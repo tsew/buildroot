@@ -1,0 +1,88 @@
+config BR2_TARGET_TRUSTEDGRUB2
+	bool "trustedgrub2"
+	depends on BR2_i386 || BR2_x86_64
+	help
+	  TrustedGRUB2 is a boot loader by Sirrix-AG derived  from
+	  GRUB2 the GRand Unified Bootloader version 2.
+	
+	  It transforms a standard GRUB2 into a version that offers 
+	  TCG (TPM) support for granting the integrity of the boot 
+	  process (trusted boot). This project was highly inspired 
+	  by the former projects TrustedGrub1 and GRUB-IMA. However 
+	  TrustedGRUB2 was completly written from scratch.
+
+	  TrustedGRUB2 is measuring all critical components during 
+	  the boot process, i.e. GRUB2 kernel, GRUB2 modules, the OS 
+	  kernel or OS modules and so on, together with their 
+	  parameters. Please note that the TrustedGRUB2 MBR bootcode 
+	  has not to be checked here (it wouldn't even be possible). 
+	  The MBR bootcode has already been measured by the TPM 
+	  itself. Since the TPM is passive, it has no direct ability 
+	  to check if the integrity of bootloader (and the OS 
+	  kernel/modules and so on) actually is correct. This can 
+	  only be done indirectly by using the seal/unseal functions 
+	  of the TPM (for details on this topic, you should have a 
+	  look at the TCG specifications or on other documents 
+	  describing TCG/TPM abilities).
+
+	  EFI is not currently supported
+	
+	  https://github.com/Sirrix-AG/TrustedGRUB2
+
+
+if BR2_TARGET_TRUSTEDGRUB2
+
+choice
+	prompt "Platform"
+
+config BR2_TARGET_TRUSTEDGRUB2_I386_PC
+	bool "i386-pc"
+	help
+	  Select this option if the platform you're targetting is a
+	  x86 or x86-64 legacy BIOS based platform.
+
+#
+#config BR2_TARGET_TRUSTEDGRUB2_I386_EFI
+#	bool "i386-efi"
+#	help
+#	  Select this option if the platform you're targetting has a
+#	  32 bits EFI BIOS. Note that some x86-64 platforms use a 32
+#	  bits EFI BIOS, and this option should be used in this case.
+#
+#config BR2_TARGET_TRUSTEDGRUB2_X86_64_EFI
+#	bool "x86-64-efi"
+#	depends on BR2_ARCH_IS_64
+#	help
+#	  Select this option if the platform you're targetting has a
+#	  64 bits EFI BIOS.
+#
+endchoice
+
+if BR2_TARGET_TRUSTEDGRUB2_I386_PC
+
+config BR2_TARGET_TRUSTEDGRUB2_BOOT_PARTITION
+	string "boot partition"
+	default "hd0,msdos1"
+	help
+	  Specify the partition where the /boot/grub/grub.cfg file is
+	  located. Use 'hd0,msdos1' for the first partition of the
+	  first disk if using a legacy partition table, or 'hd0,gpt1'
+	  if using GPT partition table.
+
+endif # BR2_TARGET_TRUSTEDGRUB2_I386_PC
+
+config BR2_TARGET_TRUSTEDGRUB2_BUILTIN_MODULES
+	string "builtin modules"
+	default "boot linux ext2 fat part_msdos part_gpt normal biosdisk" if BR2_TARGET_TRUSTEDGRUB2_I386_PC
+	default "boot linux ext2 fat part_msdos part_gpt normal efi_gop" \
+		if BR2_TARGET_TRUSTEDGRUB2_I386_EFI || BR2_TARGET_TRUSTEDGRUB2_X86_64_EFI
+
+config BR2_TARGET_TRUSTEDGRUB2_BUILTIN_CONFIG
+	string "builtin config"
+	help
+	  Path to a Grub 2 configuration file that will be embedded
+	  into the Grub image itself. This allows to set the root
+	  device and other configuration parameters, but however menu
+	  entries cannot be described in this embedded configuration.
+
+endif # BR2_TARGET_TRUSTEDGRUB2
