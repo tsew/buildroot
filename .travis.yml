@@ -6,6 +6,6 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y build-essential libncurses5-dev rsync cpio python unzip bc wget
 install:
-  - make raspberrypi_defconfig
+  - make intel_ich10_defconfig
 script:
   - make 
