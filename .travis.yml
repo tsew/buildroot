@@ -6,4 +6,4 @@ before_install:
 install:
   - make intel_ich10_defconfig
 script:
-  - make 
+  - make -s
