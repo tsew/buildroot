@@ -9,16 +9,16 @@ Online documentation can be found at http://buildroot.org/docs.html
 
 To build and use the buildroot stuff, do the following:
 
-1) run 'make menuconfig'
-2) select the target architecture and the packages you wish to compile
-3) run 'make'
-4) wait while it compiles
-5) find the kernel, bootloader, root filesystem, etc. in output/images
+1. run 'make menuconfig'
+2. select the target architecture and the packages you wish to compile
+3. run 'make'
+4. wait while it compiles
+5. find the kernel, bootloader, root filesystem, etc. in output/images
 
 You do not need to be root to build or run buildroot.  Have fun!
 
 Buildroot comes with a basic configuration for a number of boards. Run
-'make list-defconfigs' to view the list of provided configurations.
+`make list-defconfigs` to view the list of provided configurations.
 
 Please feed suggestions, bug reports, insults, and bribes back to the
 buildroot mailing list: buildroot@buildroot.org
