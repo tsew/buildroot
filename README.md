@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/tsew/buildroot.svg?branch=master)](https://travis-ci.org/tsew/buildroot)
+Travis too slow [![Build Status](https://travis-ci.org/tsew/buildroot.svg?branch=master)](https://travis-ci.org/tsew/buildroot)
+Jenkins CI on it's way...
 
 Buildroot is a simple, efficient and easy-to-use tool to generate embedded
 Linux systems through cross-compilation.
