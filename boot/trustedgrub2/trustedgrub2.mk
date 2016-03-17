@@ -4,9 +4,12 @@
 #
 ################################################################################
 
-TRUSTEDGRUB2_VERSION = 2.0
-TRUSTEDGRUB2_SITE = git@github.com:albal/TrustedGRUB2.git
-TRUSTEDGRUB2_SITE_METHOD = git
+#TRUSTEDGRUB2_VERSION = 2.0
+#TRUSTEDGRUB2_SITE = git@github.com:albal/TrustedGRUB2.git
+#TRUSTEDGRUB2_SITE_METHOD = git
+TRUSTEDGRUB2_VERSION = 1.1.0e
+TRUSTEDGRUB2_SOURCE = $(TRUSTEDGRUB2_VERSION).tar.gz
+TRUSTEDGRUB2_SITE = https://github.com/albal/TrustedGRUB2/archive
 TRUSTEDGRUB2_LICENSE = GPLv3+
 TRUSTEDGRUB2_LICENSE_FILES = COPYING
 TRUSTEDGRUB2_DEPENDENCIES = host-bison host-flex
