@@ -1,4 +1,4 @@
-Builds in Jenkins CI on it's way...
+[![Build Status](http://ci.tsew.net/buildStatus/icon?job=buildroot&style=plastic)](http://ci.tsew.net/job/buildroot/)
 
 Buildroot is a simple, efficient and easy-to-use tool to generate embedded
 Linux systems through cross-compilation.
